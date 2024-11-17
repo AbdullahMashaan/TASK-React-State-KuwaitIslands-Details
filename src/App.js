@@ -7,8 +7,7 @@ import islandsData from './data/islands';
 
 function App() {
   const [islands, setIslands] = useState(islandsData);
-  const [selectedIsland, setSelectedIsland] = useState(islandsData[1]); // Initial island: Boubyan
-
+  const [selectedIsland, setSelectedIsland] = useState(islandsData[1]); 
   const handleIslandClick = (island) => {
     setSelectedIsland(island);
   };
@@ -16,7 +15,7 @@ function App() {
   const handleBooking = (islandId) => {
     const updatedIslands = islands.map(island => {
       if (island.id === islandId) {
-        return Object.assign({}, island, { visitors: island.visitors + 1 });
+        island.visitors += 1;
       }
       return island;
     });
