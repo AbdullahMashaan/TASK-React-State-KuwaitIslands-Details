@@ -1,18 +1,13 @@
 import { useState } from "react";
-import islands from "../data/islands";
 import Island from "./Island";
 
-export default function IslandList({ setIsland }) {
+export default function IslandList({ islands, onIslandClick }) {
   const [query, setQuery] = useState("");
 
-  const handleIslandClick = (island) => {
-    setIsland(island);
-  };
-
-  let islandsArray = islands
+  const filteredIslands = islands
     .filter((island) => island.name.toLowerCase().includes(query.toLowerCase()))
     .map((island) => (
-      <Island key={island.id} island={island} onClick={handleIslandClick} />
+      <Island key={island.id} island={island} onClick={onIslandClick} />
     ));
 
   return (
@@ -22,7 +17,7 @@ export default function IslandList({ setIsland }) {
         placeholder="Search for an island"
         onChange={(event) => setQuery(event.target.value)}
       />
-      <div className="islandList">{islandsArray}</div>
+      <div className="islandList">{filteredIslands}</div>
     </div>
   );
 }
